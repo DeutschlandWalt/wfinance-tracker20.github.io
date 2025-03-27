@@ -1,4 +1,4 @@
-WaltFinanceTracking
+Walt Finance Tracking
 
 Простой и удобный трекер личных финансов с:
 ✅ Сохранением данных в браузере (localStorage)
