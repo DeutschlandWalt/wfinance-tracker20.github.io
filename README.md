@@ -1,5 +1,3 @@
-# wfinance-tracker20.github.io
-
 WaltFinanceTracking
 
 Простой и удобный трекер личных финансов с:
