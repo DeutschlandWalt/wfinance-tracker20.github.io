@@ -20,13 +20,8 @@ HTML5
 
 Демонстрации навыков фронтенд-разработки
 
-Курсовых работ
+Курсовая работа
 
-[Посмотреть демо] • [Исходный код]
-
-(Коротко, понятно и с акцентом на ключевые фичи)
-
-Можно добавить badges в начале для визуального выделения:
 
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white)
