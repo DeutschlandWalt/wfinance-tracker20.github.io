@@ -7,9 +7,9 @@
     <title>WFT</title>
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-light: #4895ef;
-            --secondary: #3f37c9;
+            --primary: #420f46;
+            --primary-light: #1b072e;
+            --secondary: #2b0442;
             --dark: #212529;
             --light: #f8f9fa;
             --gray: #adb5bd;
@@ -275,7 +275,7 @@
             background: var(--secondary);
         }
 
-        /* Стили для страницы "О проекте" */
+        
         .about-container {
             max-width: 800px;
             margin: 0 auto;
@@ -291,10 +291,10 @@
             max-width: 800px;
             margin: 20px;
             padding: 30px;
-            overflow: hidden; /* Скрывает выходящие за границы элементы */
+            overflow: hidden; 
         }
 
-                /* Контейнер для аватарки и текста */
+                
         .author-info {
             display: flex;
             align-items: center;
@@ -383,7 +383,6 @@
 </head>
 <body>
     <div class="container" id="app-container">
-        <!-- Главная страница -->
         <div id="home-page" style="display: none;">
             <header>
                 <div class="header-content">
@@ -393,8 +392,6 @@
                         <a href="#" onclick="showPage('tracker')">Трекер</a>
                         <a href="#" onclick="showPage('about')">О проекте</a>
                     </nav>
-                    <div class="theme-switch" onclick="toggleTheme()"></div>
-                </div>
             </header>
 
             <main>
@@ -410,7 +407,6 @@
             </footer>
         </div>
 
-        <!-- Страница трекера -->
         <div id="tracker-page" style="display: none;">
             <header>
                 <div class="header-content">
@@ -420,8 +416,6 @@
                         <a href="#" class="active" onclick="showPage('tracker')">Трекер</a>
                         <a href="#" onclick="showPage('about')">О проекте</a>
                     </nav>
-                    <div class="theme-switch" onclick="toggleTheme()"></div>
-                </div>
             </header>
 
             <main>
@@ -470,9 +464,7 @@
 
                 <div class="card">
                     <h2>Последние операции</h2>
-                    <div class="transactions" id="transactions-list">
-                        <!-- Транзакции будут добавляться здесь -->
-                    </div>
+                    <div class="transactions" id="transactions-list"></div>
                 </div>
 
                 <div class="card" style="margin-top: 30px;">
@@ -492,7 +484,6 @@
             </footer>
         </div>
 
-        <!-- Страница "О проекте" -->
         <div id="about-page" style="display: none;">
             <header>
                 <div class="header-content">
@@ -502,8 +493,6 @@
                         <a href="#" onclick="showPage('tracker')">Трекер</a>
                         <a href="#" class="active" onclick="showPage('about')">О проекте</a>
                     </nav>
-                    <div class="theme-switch" onclick="toggleTheme()"></div>
-                </div>
             </header>
 
             <main>
@@ -601,7 +590,6 @@
             balanceAmount: document.getElementById('balance-amount'),
             incomeAmount: document.getElementById('income-amount'),
             expenseAmount: document.getElementById('expense-amount'),
-            themeSwitch: document.querySelector('.theme-switch')
         };
 
         // Инициализация приложения
@@ -633,8 +621,6 @@
                 state.expense = data.expense || 0;
                 state.theme = data.theme || 'light';
                 
-                // Применяем тему
-                applyTheme(state.theme);
                 
                 // Обновляем UI
                 updateUI();
@@ -647,7 +633,6 @@
                 balance: state.balance,
                 income: state.income,
                 expense: state.expense,
-                theme: state.theme
             };
             localStorage.setItem('financeTrackerData', JSON.stringify(data));
         }
@@ -772,22 +757,6 @@
             if (currentPageNav) {
                 currentPageNav.classList.add('active');
             }
-        }
-
-        // Функции для работы с темой
-        function toggleTheme() {
-            state.theme = state.theme === 'light' ? 'dark' : 'light';
-            applyTheme(state.theme);
-            saveData();
-        }
-
-        function applyTheme(theme) {
-            document.body.className = theme === 'dark' ? 'dark-theme' : '';
-            const themeSwitches = document.querySelectorAll('.theme-switch');
-            themeSwitches.forEach(switchEl => {
-                switchEl.style.background = theme === 'dark' ? 'var(--primary)' : 'var(--gray)';
-                switchEl.style.justifyContent = theme === 'dark' ? 'flex-end' : 'flex-start';
-            });
         }
     </script>
 </body>
