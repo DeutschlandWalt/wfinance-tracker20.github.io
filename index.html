@@ -4,389 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo.png" type="image/png">
-    <title>WFT</title>
-    <style>
-        :root {
-            --primary: #420f46;
-            --primary-light: #1b072e;
-            --secondary: #2b0442;
-            --dark: #212529;
-            --light: #f8f9fa;
-            --gray: #adb5bd;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        nav a {
-            color: var(--dark);
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-        }
-
-        nav a.active:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--primary);
-        }
-
-
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: var(--shadow);
-        }
-
-        .balance-card {
-            text-align: center;
-        }
-
-        .balance-title {
-            font-size: 16px;
-            color: var(--gray);
-            margin-bottom: 10px;
-        }
-
-        .balance-amount {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .income-expense {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .income, .expense {
-            text-align: center;
-        }
-
-        .income .amount {
-            color: var(--success);
-        }
-
-        .expense .amount {
-            color: var(--danger);
-        }
-
-        .amount {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .label {
-            font-size: 14px;
-            color: var(--gray);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
-        }
-
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background: var(--secondary);
-        }
-
-        .transactions {
-            margin-top: 30px;
-        }
-
-        .transaction {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
-            align-items: center;
-        }
-
-        .transaction:last-child {
-            border-bottom: none;
-        }
-
-        .transaction-info {
-            flex: 1;
-        }
-
-        .transaction-category {
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .transaction-date {
-            font-size: 14px;
-            color: var(--gray);
-        }
-
-        .transaction-amount {
-            font-weight: 600;
-        }
-
-        .income-bg {
-            background: rgba(76, 201, 240, 0.1);
-        }
-
-        .expense-bg {
-            background: rgba(247, 37, 133, 0.1);
-        }
-
-        .chart-container {
-            height: 200px;
-            margin-top: 30px;
-            position: relative;
-        }
-
-        .chart-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 8px;
-        }
-
-        .home-hero {
-            text-align: center;
-            padding: 80px 0;
-        }
-
-        .home-hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .home-hero p {
-            font-size: 20px;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .home-cta {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 18px;
-        }
-
-        .home-cta:hover {
-            background: var(--secondary);
-        }
-
-        
-        .about-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-
-        .about-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin: 20px;
-            padding: 30px;
-            overflow: hidden; 
-        }
-
-                
-        .author-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        /* Стили для аватарки */
-        .author-avatar-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        /* Стили для текстовой информации */
-        .author-details {
-            flex: 1;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .tech-item {
-            background: var(--light);
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-        }
-
-        .tech-item img {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            color: var(--gray);
-            font-size: 14px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            margin-top: auto;
-        }
-
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-            
-            .home-hero h1 {
-                font-size: 36px;
-            }
-            
-            .home-hero p {
-                font-size: 18px;
-            }
-            
-            .header-content {
-                flex-direction: column;
-            }
-            
-            nav {
-                margin-top: 15px;
-            }
-            
-            nav a {
-                margin: 0 10px;
-            }
-            
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Walt</title>
 </head>
 <body>
     <div class="container" id="app-container">
-        <div id="home-page" style="display: none;">
+        <div id="home-page" style="display: none;"> <!--(Домашняя страница)-->
             <header>
                 <div class="header-content">
-                    <a href="#" class="logo">WFT</a>
+                    <a href="#" class="logo">Walt</a>
                     <nav>
                         <a href="#" class="active" onclick="showPage('home')">Главная</a>
                         <a href="#" onclick="showPage('tracker')">Трекер</a>
@@ -395,7 +21,7 @@
             </header>
 
             <main>
-                <div class="home-hero">
+                <div class="home-hero"> <!--Главный текст на странице(дочерний див) (Домашняя страница)-->
                     <h1>Минималистичный финансовый трекер</h1>
                     <p>Контролируйте свои доходы и расходы без лишней сложности. Данные сохраняются в вашем браузере.</p>
                     <a href="#" class="home-cta" onclick="showPage('tracker')">Начать отслеживание</a>
@@ -403,14 +29,14 @@
             </main>
 
             <footer>
-                <p>WFT - Walt Finance Tracking Site © 2025 | Простота и ясность - наш девиз</p>
+                <p>Walt Finance Tracking Site © 2025 | Простота и ясность - наш девиз</p>
             </footer>
         </div>
 
-        <div id="tracker-page" style="display: none;">
+        <div id="tracker-page" style="display: none;"> <!--Страничка трекера-->
             <header>
                 <div class="header-content">
-                    <a href="#" class="logo">WFT</a>
+                    <a href="#" class="logo">Walt</a>
                     <nav>
                         <a href="#" onclick="showPage('home')">Главная</a>
                         <a href="#" class="active" onclick="showPage('tracker')">Трекер</a>
@@ -418,7 +44,7 @@
                     </nav>
             </header>
 
-            <main>
+            <main>  <!--Добавление статистики доходов-->
                 <div class="dashboard">
                     <div class="card balance-card">
                         <h2 class="balance-title">Ваш баланс</h2>
@@ -435,22 +61,22 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card"> <!--Карточка с добавлением операций-->
                         <h2>Добавить операцию</h2>
-                        <form id="transaction-form">
+                        <form id="transaction-form"> <!--Форма транзакций-->
                             <div class="form-group">
-                                <label for="type">Тип операции</label>
-                                <select id="type" class="form-control">
+                                <label for="type">Тип операции</label> <!--Метка для (типа операций)-->
+                                <select id="type" class="form-control"> <!--Селектор(С контролем формы)-->
                                     <option value="income">Доход</option>
                                     <option value="expense">Расход</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="category">Категория</label>
+                                <label for="category">Категория</label> <!--Метка категорий-->
                                 <input type="text" id="category" class="form-control" placeholder="Например: Зарплата">
                             </div>
                             <div class="form-group">
-                                <label for="amount">Сумма ($)</label>
+                                <label for="amount">Сумма ($)</label> <!--Метка для количества-->
                                 <input type="number" id="amount" class="form-control" placeholder="0">
                             </div>
                             <div class="form-group">
@@ -462,12 +88,12 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card"> <!--Карточка с последними операциями-->
                     <h2>Последние операции</h2>
                     <div class="transactions" id="transactions-list"></div>
                 </div>
 
-                <div class="card" style="margin-top: 30px;">
+                <div class="card" style="margin-top: 30px;"> <!--Карточка с внешним отступом сверху-->
                     <h2>Статистика</h2>
                     <div class="chart-container">
                         <div class="chart-placeholder">
@@ -480,14 +106,14 @@
             </main>
 
             <footer>
-                <p>WFT - Walt Finance Tracking Site © 2025 | Простота и ясность - наш девиз</p>
+                <p>Walt Finance Tracking Site © 2025 | Простота и ясность - наш девиз</p>
             </footer>
         </div>
 
         <div id="about-page" style="display: none;">
             <header>
                 <div class="header-content">
-                    <a href="#" class="logo">WFT</a>
+                    <a href="#" class="logo">Walt</a>
                     <nav>
                         <a href="#" onclick="showPage('home')">Главная</a>
                         <a href="#" onclick="showPage('tracker')">Трекер</a>
@@ -548,6 +174,12 @@
                                 <p>Колледж: Одесский национальный университет имени И. И. Мечников</p>
                             </div>
                         </div>
+                        <div class="author-sendmessage">
+                            <a href="https://teleg.one/reichbyte"><img src="Telegram_Messenger.png" alt="Telegram" class="author-telegram"></a>
+                        </div>
+                        <div class="author-github">
+                            <a href="https://github.com/DeutschlandWalt"><img src="github-png.png" alt="Github" class="author-github"></a>
+                        </div>
                     </div>
 
                     <div class="about-card">
@@ -565,7 +197,7 @@
             </main>
 
             <footer>
-                <p>WFT - Walt Finance Tracking Site © 2025 | Простота и ясность - наш девиз</p>
+                <p>Walt Finance Tracking Site © 2025 | Простота и ясность - наш девиз</p>
             </footer>
         </div>
     </div>
