@@ -1,0 +1,390 @@
+:root { /*Главный элемент(корень дерева), переменные для использования с var*/
+    --primary: #420f46;
+    --primary-light: #1b072e;
+    --secondary: #2b0442;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --gray: #adb5bd;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+* {
+    margin: 0; /*Внешний отступ*/
+    padding: 0; /*Внутренний отступ*/
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+
+header{
+    padding: 20px 0; /*Внутренний отступ*/
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /*Нижняя граница хедера*/
+    margin-bottom: 40px; /*Внешний отступ конца хедера 40px*/
+}
+
+.header-content{
+    display: flex; /*Гибкость расположения элементов*/
+    justify-content: space-between; /* Равномерно распределяет все элементы по ширине flex-блока.Первый элемент вначале, последний в конце */
+    align-items: center; /* Центрировать элементы в поперечной оси */
+}
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--light); /* Переменная var() используется для вставки значения кастомного свойства (также известного как "CSS-переменная") в другое свойство. */
+    line-height: 1.6;
+    color: var(--dark);
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;  /*Внешний отступ*/
+    padding: 0 20px; /*Внутренний отступ*/
+    min-height: 100vh; /* 100% ширины окна просмотру*/
+    display: flex; /*Изображать:гибко*/
+    flex-direction: column; /*Направление, в котором блоки будут располагаться в виде столбца */
+}
+
+
+.logo{
+    font-size: 30px;
+    font-weight: 1000;
+    color: var(--primary);
+    text-decoration:solid;
+}
+
+nav a{
+    color: var(--dark);
+    text-decoration: none;
+    margin-left: 30px; /*Внешний отступ слева*/
+    font-weight: 500;
+    position: relative;
+}
+
+nav a:hover { /*срабатывает, когда пользователь наводит на элемент мышью, но не обязательно активирует его*/
+    color: var(--primary);
+}
+
+nav a.active{
+    color: var(--primary);
+}
+
+nav a.active:after{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px; 
+    background: var(--primary);
+}
+
+
+.dashboard{
+    display: grid; /*grid Позволяет разделить страницу на основные области*/
+    grid-template-columns: 1fr 2fr; /*Эдиницы гибкости(в фракциях*)*/
+    gap: 30px; /*отступ между колонками 30px*/
+    margin-bottom: 40px; /*Внешний отступ*/
+}
+
+.card{
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.balance-card{
+    text-align: center;
+}
+
+.balance-title{
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 10px;
+}
+
+.balance-amount{
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.income-expense{
+    display: flex; /*Распологать гибким*/
+    justify-content: space-around; /*равномерное распределение по flex-блоку с отступами во круг*/
+}
+
+.income, .expense{
+    text-align: center;
+}
+
+.income , .amount{
+    color: var(--success);
+}
+
+.expense .amount{
+    color: var(--danger);
+}
+
+.amount{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px; /*Внешний отступ от конца*/
+}
+
+.label{ /*Метка*/
+    font-size: 14px;
+    color:var(grey);
+}
+
+.form-group{
+    margin-bottom: 20px; /*Внешний отступ от конца*/
+}
+
+.form-group label{
+    display: block; /*Располагать блоком*/
+    margin-bottom: 8px; /*внешний отступ от конца*/
+    font-weight: 500;
+}
+
+.form-control{
+    width: 100%;
+    padding: 12px 15px; /*Внутренний отступ*/
+    border: 1px solid #e0e0e0; /*Цвет Границы*/
+    border-radius: 8px; /*Граничный радиус*/
+    font-size: 16px;
+}
+
+form-control:focus{ /*:focus применяется, когда элемент (такой как input формы) получает фокус. Обычно он активируется при клике мышью пользователем или при выборе элемента с использованием клавиши "tab" на клавиатуре.*/
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: var(--shadow)
+}
+
+.btn{
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px; /*Внутренний отступ*/
+    border-radius: 8px; /*Граничный радиус*/
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer; /*курсор мыши, который будет отображаться при наведении на элемент*/
+    width: 100%;
+}
+
+.btn:hover{
+    background: var(--secondary); 
+}
+
+.transaction{
+    display: flex;
+    justify-content: space-between; /*равномерное распределение по flex-блоку с местом между*/
+    padding: 15px 0; /*Внутренний отступ*/
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+}
+
+.transaction:last-child{ /*последний элемент в транзакциях*/
+    border-bottom:none;
+}
+
+.transaction-info{
+    flex: 1;
+}
+
+.transaction-category{
+    font-weight: 500;
+    margin-bottom: 5px; /*Внешний отступ конца*/
+}
+
+.transaction-date{
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.transaction.amount{
+    font-weight: 600;
+}
+
+.income-bg{
+    background: rgba(76, 201, 240, 0.1);
+}
+
+.expense-bg{
+    background: rgba(247, 37, 133, 0.1);
+}
+
+.chart-container{
+    height: 200px;
+    margin-top: 30px;
+    position: relative; /*Элемент позиционируется в соответствии с нормальным потоком документа*/
+}
+
+.chart-placeholder{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50% , #f0f0f0 75% );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+}
+
+.home-hero{
+    text-align: center;
+    padding: 80px 0; /*Внутренний отступ*/
+}
+
+.home-hero h1{
+    font-size: 48px;
+    margin-bottom: 20px; /*Внешний отступ от конца*/
+    color: var(--primary);
+}
+
+.home-hero p{ 
+    font-size: 20px;
+    color: var(--gray);
+    max-width: 600px; 
+    margin: 0 auto 40px;  /*Внешний отступ*/
+}
+
+
+.home-cta{ /*Кнопка начать отслеживать*/
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 15px 30px; /*Внутренний отступ*/
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.home-cta:hover{
+    background: var(--secondary);
+}
+
+.about-container{
+    max-width: 800px;
+    margin: 0 auto; /*Внешний отступ*/
+    padding: 30px; /*Внутренний отступ*/
+}
+
+.about-card{
+    background: white;
+    border-radius: 12px; /*Радиус границ*/
+    padding: 30px; /*Внутренний отступ*/
+    box-shadow: var(--shadow);
+    margin-bottom: 30px; /*Внешний отступ от конца*/
+    max-width: 800px;
+    margin: 20px; /*Внешний отступ*/
+    overflow: hidden; /*Контент обрезается, без предоставления прокрутки.*/
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.author-sendmessage img{
+    float:inline-start;
+    width: 30px;
+    height: 30px;
+    border-radius: 25%;
+    border: 2px solid var(--primary);
+}
+
+.author-github img{
+    margin-left: 5px;
+    float: inline-start;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 25%;
+    border: 2px solid var(--primary);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+
+/* Стили для аватарки */
+.author-avatar-photo{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Стили для текстовой информации */
+.author-details {
+    flex: 1;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tech-item {
+    background: var(--light);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.tech-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+
+@keyframes loading{
+    0% {background-position: 200% 0;}
+    100% {background-position: -200% 0;}
+}
+
+footer{
+    text-align: center;
+    padding: 30px 0; /*Внутренний отступ*/
+    color: var(--gray);
+    font-size: 14px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: auto; /*Внешний отступ*/
+}
+
+@media (max-width: 768px){ /*Адаптация под телефоны*/
+    .dashboard{
+        grid-template-columns: 1fr;
+    }
+
+    .home-hero h1{
+        font-size: 36px;
+    }
+    .home-hero p{
+        font-size: 18px;
+    }
+
+    .header-content{
+        flex-direction: column; /*гибкое направление в столбики*/
+    }
+
+    nav{
+        margin-top: 15px; /*Внешний отступ сверху*/
+    }
+
+    nav a{
+        margin: 0 10px; /*Внешний отступ*/
+    }
+}
