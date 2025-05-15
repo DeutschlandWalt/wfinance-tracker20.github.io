@@ -379,7 +379,7 @@
             // Показываем выбранную страницу
             document.getElementById(page + '-page').style.display = 'block';
             
-            // Обновляем активные ссылки в навигации
+            // Обновляем активные ссылки в навигации (Метод querySelectorAll() Document возвращает статический (не динамический) NodeList, содержащий все найденные элементы документа, которые соответствуют указанному селектору.)
             document.querySelectorAll('nav a').forEach(link => {
                 link.classList.remove('active');
             });
